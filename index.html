@@ -44,9 +44,10 @@
     const height = hero.offsetHeight;
 
     // 100px
+    // can change to make shadow effect go longer distance
     const walk = 100;
 
-    // info to find users cursor
+    // info to find users cursor position
     let x = e.offsetX;
     let y = e.offsetY;
 
@@ -62,6 +63,13 @@
     // this math prevents 0 - 100 and makes it go from 50 - -50
     const xWalk = Math.round((x / width * walk) - (walk / 2));
     const yWalk = Math.round((y / height * walk) - (walk / 2));
+
+    text.style.textShadow = `
+      ${xWalk}px ${yWalk}px 0 rgba(255,0,255,0.7),
+      ${xWalk * -1}px ${yWalk}px 0 rgba(0,255,255,0.7),
+      ${yWalk}px ${xWalk * -1}px 0 rgba(0,255,0,0.7),
+      ${yWalk * -1}px ${xWalk}px 0 rgba(0,0,255,0.7)
+    `;
 
     console.log(xWalk, yWalk);
   }
